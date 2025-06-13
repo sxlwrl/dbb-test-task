@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Company {
+  id           String        @id @default(uuid()) @db.Uuid
+  name         String        @unique
+  staffMembers StaffMember[]
+}
+
+model StaffMember {
+  id           String        @id @default(uuid()) @db.Uuid
+  name         String        @unique
+  joinedAt     DateTime
+  baseSalary   Int           @default(500)
+  type         StaffType
+  company      Company       @relation(fields: [companyId], references: [id])
+  companyId    String        @db.Uuid
+  supervisor   StaffMember?  @relation("StaffSupervisor", fields: [supervisorId], references: [id])
+  supervisorId String?       @db.Uuid
+  subordinates StaffMember[] @relation("StaffSupervisor")
+}
+
+enum StaffType {
+  EMPLOYEE
+  MANAGER
+  SALES
+}
