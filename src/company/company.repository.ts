@@ -2,12 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { ICompanyRepository } from './interfaces/company.repository.interface';
 import { Company } from '../../generated/prisma';
+import { CreateCompanyDto } from './dto/create-company.dto';
 
 @Injectable()
 export class CompanyRepository implements ICompanyRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  create(data: any): Promise<Company> {
+  create(data: CreateCompanyDto): Promise<Company> {
     return this.prisma.company.create({ data });
   }
 
