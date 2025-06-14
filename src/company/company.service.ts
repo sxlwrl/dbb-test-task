@@ -15,9 +15,9 @@ export class CompanyService {
     private readonly companyRepository: ICompanyRepository,
   ) {}
 
-  async create(dto: CreateCompanyDto) {
+  async create(data: CreateCompanyDto) {
     try {
-      return await this.companyRepository.create({ name: dto.name });
+      return await this.companyRepository.create(data);
     } catch (error) {
       // we can create a function like 'findByName' and check if the company already exists (instead of catching the error by ORM code)
       // but in this case we can get race condition and 2 requests instead of 1
