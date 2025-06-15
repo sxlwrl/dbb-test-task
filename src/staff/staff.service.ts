@@ -22,7 +22,7 @@ export class StaffService {
       return await this.staffRepository.create(data);
     } catch (error) {
       if (error?.code === 'P2002') {
-        throw new ConflictException('Staff with this name already exists');
+        throw new ConflictException('Staff memberwith this name already exists');
       }
       throw new InternalServerErrorException(error.message || 'Unknown error');
     }
@@ -34,7 +34,7 @@ export class StaffService {
 
   async findOne(id: string) {
     const staff = await this.staffRepository.findOne(id);
-    if (!staff) throw new NotFoundException('Staff not found');
+    if (!staff) throw new NotFoundException('Staff member not found');
     return staff;
   }
 
@@ -48,7 +48,7 @@ export class StaffService {
 
   async setSupervisor(staffId: string, supervisorId: string | null) {
     const staff = await this.staffRepository.findOne(staffId);
-    if (!staff) throw new NotFoundException('Staff not found');
+    if (!staff) throw new NotFoundException('Staff member not found');
     if (supervisorId) {
       if (staffId === supervisorId) {
         throw new ConflictException(
