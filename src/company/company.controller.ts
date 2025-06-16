@@ -8,7 +8,13 @@ import {
 } from '@nestjs/common';
 import { CompanyService } from './company.service';
 import { CreateCompanyDto } from './dto/create-company.dto';
-import { ApiTags, ApiOperation, ApiResponse, ApiBody, ApiParam } from '@nestjs/swagger';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiBody,
+  ApiParam,
+} from '@nestjs/swagger';
 
 @ApiTags('Company')
 @Controller('companies')
@@ -20,7 +26,10 @@ export class CompanyController {
   @ApiBody({ type: CreateCompanyDto })
   @ApiResponse({ status: 201, description: 'Company created' })
   @ApiResponse({ status: 400, description: 'Invalid one or more fields' })
-  @ApiResponse({ status: 409, description: 'Company with this name already exists' })
+  @ApiResponse({
+    status: 409,
+    description: 'Company with this name already exists',
+  })
   create(@Body() data: CreateCompanyDto) {
     return this.companyService.create(data);
   }

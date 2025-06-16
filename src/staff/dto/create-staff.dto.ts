@@ -29,19 +29,29 @@ export class CreateStaffDto {
   @IsOptional()
   baseSalary?: number;
 
-  @ApiProperty({ example: 'EMPLOYEE', enum: ['EMPLOYEE', 'MANAGER', 'SALES'], description: 'Employee type' })
+  @ApiProperty({
+    example: 'EMPLOYEE',
+    enum: ['EMPLOYEE', 'MANAGER', 'SALES'],
+    description: 'Employee type',
+  })
   @IsEnum(['EMPLOYEE', 'MANAGER', 'SALES'], {
     message: 'Invalid staff type (EMPLOYEE, MANAGER, SALES)',
   })
   @IsNotEmpty()
   type: 'EMPLOYEE' | 'MANAGER' | 'SALES';
 
-  @ApiProperty({ example: '8030fd18-6918-46db-be2a-93846e44b85a', description: 'Company ID' })
+  @ApiProperty({
+    example: '8030fd18-6918-46db-be2a-93846e44b85a',
+    description: 'Company ID',
+  })
   @IsUUID()
   @IsNotEmpty()
   companyId: string;
 
-  @ApiProperty({ example: '48fceb7b-5d33-4d9c-af50-a683eb90b42b', description: 'Supervisor ID' })
+  @ApiProperty({
+    example: '48fceb7b-5d33-4d9c-af50-a683eb90b42b',
+    description: 'Supervisor ID',
+  })
   @IsUUID()
   @IsOptional()
   supervisorId?: string;

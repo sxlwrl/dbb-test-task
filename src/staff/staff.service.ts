@@ -22,7 +22,9 @@ export class StaffService {
       return await this.staffRepository.create(data);
     } catch (error) {
       if (error?.code === 'P2002') {
-        throw new ConflictException('Staff memberwith this name already exists');
+        throw new ConflictException(
+          'Staff memberwith this name already exists',
+        );
       }
       throw new InternalServerErrorException(error.message || 'Unknown error');
     }
