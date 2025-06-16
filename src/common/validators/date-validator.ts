@@ -1,4 +1,8 @@
-import { registerDecorator, ValidationOptions, ValidationArguments } from 'class-validator';
+import {
+  registerDecorator,
+  ValidationOptions,
+  ValidationArguments,
+} from 'class-validator';
 
 export function IsValidDate(validationOptions?: ValidationOptions) {
   return function (object: Object, propertyName: string) {
@@ -19,4 +23,4 @@ export function IsValidDate(validationOptions?: ValidationOptions) {
       },
     });
   };
-} 
+}

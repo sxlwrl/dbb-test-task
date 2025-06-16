@@ -13,7 +13,14 @@ import { StaffService } from './staff.service';
 import { CreateStaffDto } from './dto/create-staff.dto';
 import { SetSupervisorDto } from './dto/set-supervisor.dto';
 import { ValidDatePipe } from '../common/pipes/validate-date.pipe';
-import { ApiTags, ApiOperation, ApiResponse, ApiBody, ApiParam, ApiQuery } from '@nestjs/swagger';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiBody,
+  ApiParam,
+  ApiQuery,
+} from '@nestjs/swagger';
 
 @ApiTags('Staff')
 @Controller('staff')
@@ -25,7 +32,10 @@ export class StaffController {
   @ApiBody({ type: CreateStaffDto })
   @ApiResponse({ status: 201, description: 'Staff member created' })
   @ApiResponse({ status: 400, description: 'Invalid one or more fields' })
-  @ApiResponse({ status: 409, description: 'Staff member with this name already exists' })
+  @ApiResponse({
+    status: 409,
+    description: 'Staff member with this name already exists',
+  })
   create(@Body() data: CreateStaffDto) {
     return this.staffService.create(data);
   }
@@ -53,9 +63,18 @@ export class StaffController {
   @ApiBody({ type: SetSupervisorDto })
   @ApiResponse({ status: 200, description: 'Supervisor set' })
   @ApiResponse({ status: 400, description: 'Invalid ID' })
-  @ApiResponse({ status: 404, description: 'Staff member or supervisor not found' })
-  @ApiResponse({ status: 409, description: 'Staff member cannot be their own supervisor' })
-  @ApiResponse({ status: 409, description: 'EMPLOYEE cannot have subordinates' })
+  @ApiResponse({
+    status: 404,
+    description: 'Staff member or supervisor not found',
+  })
+  @ApiResponse({
+    status: 409,
+    description: 'Staff member cannot be their own supervisor',
+  })
+  @ApiResponse({
+    status: 409,
+    description: 'EMPLOYEE cannot have subordinates',
+  })
   @ApiResponse({ status: 409, description: 'Supervisor cannot be EMPLOYEE' })
   async setSupervisor(
     @Param('id', new ParseUUIDPipe()) id: string,
@@ -77,9 +96,19 @@ export class StaffController {
   @Get(':id/salary')
   @ApiOperation({ summary: 'Get salary of a staff member' })
   @ApiParam({ name: 'id', type: 'string', description: 'Staff member ID' })
-  @ApiQuery({ name: 'at', required: false, description: 'Date, if not provided - current' })
-  @ApiResponse({ status: 200, description: 'Salary of a staff member received' })
-  @ApiResponse({ status: 400, description: 'Date cannot be before staff joinedAt date' })
+  @ApiQuery({
+    name: 'at',
+    required: false,
+    description: 'Date, if not provided - current',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Salary of a staff member received',
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Date cannot be before staff joinedAt date',
+  })
   @ApiResponse({ status: 400, description: 'Invalid ID' })
   @ApiResponse({ status: 400, description: 'Invalid date' })
   @ApiResponse({ status: 404, description: 'Staff member not found' })
@@ -102,9 +131,20 @@ export class StaffController {
   @Get(':companyId/salaries')
   @ApiOperation({ summary: 'Get total salaries by company' })
   @ApiParam({ name: 'companyId', type: 'string', description: 'Company ID' })
-  @ApiQuery({ name: 'at', required: false, description: 'Date, if not provided - current' })
-  @ApiResponse({ status: 200, description: 'Total salaries by company received' })
-  @ApiResponse({ status: 400, description: 'Date cannot be before staff joinedAt date for one of the staff members' })
+  @ApiQuery({
+    name: 'at',
+    required: false,
+    description: 'Date, if not provided - current',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Total salaries by company received',
+  })
+  @ApiResponse({
+    status: 400,
+    description:
+      'Date cannot be before staff joinedAt date for one of the staff members',
+  })
   @ApiResponse({ status: 400, description: 'Invalid ID' })
   @ApiResponse({ status: 400, description: 'Invalid date' })
   @ApiResponse({ status: 404, description: 'No staff found for this company' })
