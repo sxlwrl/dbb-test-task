@@ -54,13 +54,13 @@ Staff module is accountable for aspects of staff management. It supports the cre
 
 ### Calculation algorithm
 
-**1.** The client sends a request to the endpoint (/staff/:id/salary), optionally specifying a date.
-**2.** The controller receives the request, validates the input and delegates calculation to the service layer.
-**3.** The service retrieves the staff member's data from the controller, passes the information to the repository, receives staff member object from that repository.
-**4.** The system selects calculator based on the staff member's role (Employee, Manager, Sales)
-**4.1.** If it is Employee - just calculates the salary
-**4.2.** If it is Manager - calculates the salary and uses `getSalary` function, which calculates salaries of the first level subordinates
-**4.3.** If it is Sales - calculates the salary and uses `getAllSubordinateSalaries` function, which recursively calculates the salary of all subordinates
+**1.** The client sends a request to the endpoint (/staff/:id/salary), optionally specifying a date. <br/>
+**2.** The controller receives the request, validates the input and delegates calculation to the service layer. <br/>
+**3.** The service retrieves the staff member's data from the controller, passes the information to the repository, receives staff member object from that repository. <br/>
+**4.** The system selects calculator based on the staff member's role (Employee, Manager, Sales) <br/>
+**4.1.** If it is Employee - just calculates the salary <br/>
+**4.2.** If it is Manager - calculates the salary and uses `getSalary` function, which calculates salaries of the first level subordinates <br/>
+**4.3.** If it is Sales - calculates the salary and uses `getAllSubordinateSalaries` function, which recursively calculates the salary of all subordinates <br/>
 
 ### Database Structure
 
