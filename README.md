@@ -17,7 +17,7 @@ npm install
 npm run start:dev
 ```
 
-**API** `http://localhost:3000` 
+**API** `http://localhost:3000` <br/>
 **Swagger Docs** `http://localhost:3000/api`
 
 ## Project Architecture
