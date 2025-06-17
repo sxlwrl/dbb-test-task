@@ -7,6 +7,8 @@
 git clone https://github.com/sxlwrl/dbb-test-task.git
 cd dbb-test-task
 
+# Setup env file
+
 # Run project with Docker
 docker-compose up -d --build
 
